@@ -132,26 +132,152 @@ class s_link_list:
             return 0
         return 1 + self.get_size_rec(node.next)
 
+    def swap_node(self, key_1, key_2):
+        if(key_1 == key_2):
+            return
+
+        prev_1 = None
+        curr_1 = self.head
+        while(curr_1 and curr_1.data is not key_1):
+            prev_1 = curr_1
+            curr_1 = curr_1.next
+
+        prev_2 = None
+        curr_2 = self.head
+        while(curr_2 and curr_2.data is not key_2):
+            prev_2 = curr_2
+            curr_2 = curr_2.next
+        if(curr_1 is None or curr_2 is None):
+            print("key not found.....")
+            return
+
+        if(prev_1 is not None):
+            prev_1.next = curr_2
+        else:
+            self.head = curr_2
+
+        if(prev_2 is not None):
+            prev_2.next = curr_1
+        else:
+            self.head = curr_1
+
+        curr_1.next, curr_2.next = curr_2.next, curr_1.next
+
     def reverse(self):
         prev_node = None
-        curr_node = self.head
-        while(curr_node):
-            next_node = curr_node.next
-            curr_node.next = prev_node
-            prev_node = curr_node
-            curr_node = next_node
+        tmp = self.head
+        while(tmp):
+            next_node = tmp.next
+            tmp.next = prev_node
+            prev_node = tmp
+            tmp = next_node
         self.head = prev_node
+
+    def swap_node_2(self, key_1, key_2):
+        if(key_1 == key_2):
+            return
+
+        prev_1 = None
+        curr_1 = self.head
+        while(curr_1 and curr_1.data != key_1):
+            prev_1 = curr_1
+            curr_1 = curr_1.next
+
+        prev_2 = None
+        curr_2 = self.head
+        while(curr_2 and curr_2.data != key_2):
+            prev_2 = curr_2
+            curr_2 = curr_2.next
+
+        if(curr_1 is None or curr_2 is None):
+            print("key not found.")
+            return
+        else:
+            print(curr_1.data, curr_2.data)
+
+        if(prev_1 is not None):
+            prev_1.next = curr_2
+        else:
+            self.head = curr_2
+
+        if(prev_2 is not None):
+            prev_2.next = curr_1
+        else:
+            self.head = curr_1
+        curr_2.next, curr_1.next = curr_1.next, curr_2.next
+
+    def nth_node(self, node_number):
+        tmp = self.head
+        list_length = 0
+        while(tmp):
+            if(list_length == node_number):
+                break
+            list_length += 1
+            tmp = tmp.next
+        print(tmp.data)
+
+    def middle_element_2(self):
+        lst = []
+        tmp = self.head
+        while(tmp):
+            lst.append(tmp)
+            tmp = tmp.next
+        # print(len(lst)/2)
+        print(lst[len(lst)//2].data)
+
+    def middle_element_3(self):
+        tmp = self.head
+        mid = self.head
+        cunt = 0
+        while(tmp):
+            if(cunt & 1):
+                mid = mid.next
+            cunt += 1
+            tmp = tmp.next
+        print(mid.data)
+
+    def detectLoop(self):
+        slow_p = self.head
+        fast_p = self.head
+        while(slow_p and fast_p and fast_p.next):
+            slow_p = slow_p.next
+            fast_p = fast_p.next.next
+            if(slow_p == fast_p):
+                print('loop detected => ', slow_p.data)
+                return
+
+    def loop_hash_detech(self):
+        tmp = self.head
+        hash_look_up = set()
+        while(tmp):
+
+            if(tmp in hash_look_up):
+                return True
+            hash_look_up.add(tmp)
+            tmp = tmp.next
+        return False
 
 
 lsst = s_link_list()
 lsst.append_node('A')
 lsst.append_node('B')
-lsst.append_node('C')
-lsst.append_node('D')
-lsst.print_list()
+# lsst.append_node('C')
+# lsst.append_node('D')
+# lsst.append_node('E')
+# lsst.append_node('F')
+# lsst.head.next.next = lsst.head
+# lsst.print_list()
 print('##########')
-lsst.reverse()
-lsst.print_list()
+# lsst.middle_element_2()
+# lsst.middle_element_3()
+lsst.detectLoop()
+print(lsst.loop_hash_detech())
+# lsst.print_list()
+# lsst.nth_node(2)
+# lsst.swap_node_2('B', 'D')
+# print('##########')
+# lsst.print_list()
+# lsst.reverse()
 # print(lsst.get_size_rec(lsst.head))
 # lsst.del_node_at_position(1)
 # lsst.get_size()
