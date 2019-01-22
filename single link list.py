@@ -257,21 +257,58 @@ class s_link_list:
             tmp = tmp.next
         return False
 
+    def remove_duplicate(self):
+        cur = self.head
+        prev = None
+        _dict = dict()
+        while(cur):
+            if(cur.data in _dict):
+                # remove node
+                prev.next = cur.next
+                cur = None
+            else:
+                # move on
+                _dict[cur.data] = 1
+                prev = cur
+            cur = prev.next
+
+    def remove_sorted_duplicate(self):
+        cur = self.head
+        # if(cur is None):
+        #     return
+        while(cur.next):
+            if(cur.data == cur.next.data):
+                # remove node
+                cur.next = cur.next.next
+
+            else:
+                # move on
+                cur = cur.next
+
 
 lsst = s_link_list()
 lsst.append_node('A')
+lsst.append_node('A')
 lsst.append_node('B')
+lsst.append_node('B')
+lsst.append_node('C')
+lsst.append_node('D')
+lsst.append_node('D')
+
+
 # lsst.append_node('C')
 # lsst.append_node('D')
 # lsst.append_node('E')
 # lsst.append_node('F')
 # lsst.head.next.next = lsst.head
-# lsst.print_list()
+lsst.print_list()
 print('##########')
+lsst.remove_sorted_duplicate()
+lsst.print_list()
 # lsst.middle_element_2()
 # lsst.middle_element_3()
-lsst.detectLoop()
-print(lsst.loop_hash_detech())
+# lsst.detectLoop()
+# print(lsst.loop_hash_detech())
 # lsst.print_list()
 # lsst.nth_node(2)
 # lsst.swap_node_2('B', 'D')
