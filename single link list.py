@@ -273,6 +273,35 @@ class s_link_list:
             cur = prev.next
 
     def merge_list(self, llist):
+        cur_1 = self.head
+        cur_2 = llist.head
+        prev_node = None
+        if(not cur_1):
+            return cur_2
+        if(not cur_2):
+            return cur_1
+        if(cur_1 and cur_2):
+            if(cur_1.data <= cur_2.data):
+                prev_node = cur_1
+                cur_1 = prev_node.next
+            else:
+                prev_node = cur_2
+                cur_2 = prev_node.next
+        new_head = prev_node
+        while(cur_1 and cur_2):
+            if(cur_1.data <= cur_2.data):
+                prev_node.next = cur_1
+                prev_node = cur_1
+                cur_1 = prev_node.next
+            else:
+                prev_node.next = cur_2
+                prev_node = cur_2
+                cur_2 = prev_node.next
+        if(not cur_1):
+            prev_node.next = cur_2
+        if(not cur_2):
+            prev_node.next = cur_1
+        return new_head
 
 
 lsst_1 = s_link_list()
@@ -280,16 +309,22 @@ lsst_1.append_node(1)
 lsst_1.append_node(3)
 lsst_1.append_node(5)
 
-lsst = s_link_list()
-lsst.append_node(2)
-lsst.append_node(4)
-lsst.append_node(5)
+lsst_2 = s_link_list()
+lsst_2.append_node(2)
+lsst_2.append_node(4)
+lsst_2.append_node(6)
+
+print('list 1 :##########\n')
+lsst_1.print_list()
+print('list 2: ##########\n')
+lsst_2.print_list()
+print('Merge List: ########## \n')
+lsst_1.merge_list(lsst_2)
+lsst_1.print_list()
 
 # lsst_1.head.next.next = lsst_1.head
-lsst_1.print_list()
-print('##########')
-lsst_1.remove_dup()
-lsst_1.print_list()
+# lsst_1.remove_dup()
+# lsst_1.print_list()
 # lsst_1.middle_element_2()
 # lsst_1.middle_element_3()
 # lsst_1.detectLoop()
