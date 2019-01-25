@@ -304,13 +304,10 @@ class s_link_list:
         return new_head
 
     def nth_to_last(self, node_number):
-
         cur_node = self.head
-        prev_node = None
         count = 1
         while(cur_node and count != node_number):
             count += 1
-            prev_node = cur_node
             cur_node = cur_node.next
         self.head = cur_node
 
@@ -325,7 +322,7 @@ lsst_1.append_node(9)
 print('list 1 :##########\n')
 lsst_1.print_list()
 print('list nth_to_last :##########\n')
-lsst_1.nth_to_last(1)
+lsst_1.nth_to_last(3)
 lsst_1.print_list()
 
 # lsst_2 = s_link_list()
