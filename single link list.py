@@ -257,74 +257,110 @@ class s_link_list:
             tmp = tmp.next
         return False
 
-    def remove_duplicate(self):
-        cur = self.head
+    def remove_dup(self):
+        s = set()
         prev = None
-        _dict = dict()
+        cur = self.head
         while(cur):
-            if(cur.data in _dict):
+            if(cur.data in s):
                 # remove node
                 prev.next = cur.next
                 cur = None
             else:
                 # move on
-                _dict[cur.data] = 1
+                s.add(cur.data)
                 prev = cur
             cur = prev.next
 
-    def remove_sorted_duplicate(self):
-        cur = self.head
-        # if(cur is None):
-        #     return
-        while(cur.next):
-            if(cur.data == cur.next.data):
-                # remove node
-                cur.next = cur.next.next
-
+    def merge_list(self, llist):
+        cur_1 = self.head
+        cur_2 = llist.head
+        prev_node = None
+        if(not cur_1):
+            return cur_2
+        if(not cur_2):
+            return cur_1
+        if(cur_1 and cur_2):
+            if(cur_1.data <= cur_2.data):
+                prev_node = cur_1
+                cur_1 = prev_node.next
             else:
-                # move on
-                cur = cur.next
+                prev_node = cur_2
+                cur_2 = prev_node.next
+        new_head = prev_node
+        while(cur_1 and cur_2):
+            if(cur_1.data <= cur_2.data):
+                prev_node.next = cur_1
+                prev_node = cur_1
+                cur_1 = prev_node.next
+            else:
+                prev_node.next = cur_2
+                prev_node = cur_2
+                cur_2 = prev_node.next
+        if(not cur_1):
+            prev_node.next = cur_2
+        if(not cur_2):
+            prev_node.next = cur_1
+        return new_head
+
+    def nth_to_last(self, node_number):
+        cur_node = self.head
+        count = 1
+        while(cur_node and count != node_number):
+            count += 1
+            cur_node = cur_node.next
+        self.head = cur_node
 
 
-lsst = s_link_list()
-lsst.append_node('A')
-lsst.append_node('A')
-lsst.append_node('B')
-lsst.append_node('B')
-lsst.append_node('C')
-lsst.append_node('D')
-lsst.append_node('D')
+lsst_1 = s_link_list()
+lsst_1.append_node(1)
+lsst_1.append_node(3)
+lsst_1.append_node(5)
+lsst_1.append_node(7)
+lsst_1.append_node(9)
 
+print('list 1 :##########\n')
+lsst_1.print_list()
+print('list nth_to_last :##########\n')
+lsst_1.nth_to_last(3)
+lsst_1.print_list()
 
-# lsst.append_node('C')
-# lsst.append_node('D')
-# lsst.append_node('E')
-# lsst.append_node('F')
-# lsst.head.next.next = lsst.head
-lsst.print_list()
-print('##########')
-lsst.remove_sorted_duplicate()
-lsst.print_list()
-# lsst.middle_element_2()
-# lsst.middle_element_3()
-# lsst.detectLoop()
-# print(lsst.loop_hash_detech())
-# lsst.print_list()
-# lsst.nth_node(2)
-# lsst.swap_node_2('B', 'D')
+# lsst_2 = s_link_list()
+# lsst_2.append_node(2)
+# lsst_2.append_node(4)
+# lsst_2.append_node(6)
+
+# print('list 1 :##########\n')
+# lsst_1.print_list()
+# print('list 2: ##########\n')
+# lsst_2.print_list()
+# print('Merge List: ########## \n')
+# lsst_1.merge_list(lsst_2)
+# lsst_1.print_list()
+
+# lsst_1.head.next.next = lsst_1.head
+# lsst_1.remove_dup()
+# lsst_1.print_list()
+# lsst_1.middle_element_2()
+# lsst_1.middle_element_3()
+# lsst_1.detectLoop()
+# print(lsst_1.loop_hash_detech())
+# lsst_1.print_list()
+# lsst_1.nth_node(2)
+# lsst_1.swap_node_2('B', 'D')
 # print('##########')
-# lsst.print_list()
-# lsst.reverse()
-# print(lsst.get_size_rec(lsst.head))
-# lsst.del_node_at_position(1)
-# lsst.get_size()
-# lsst.detect_loop_2()
-# lsst.preappend_node('B')
-# lsst.deleteNode('C')
-# lsst.insert_at(lsst.head.next, 'C')
-# lsst.del_link_list()
+# lsst_1.print_list()
+# lsst_1.reverse()
+# print(lsst_1.get_size_rec(lsst_1.head))
+# lsst_1.del_node_at_position(1)
+# lsst_1.get_size()
+# lsst_1.detect_loop_2()
+# lsst_1.preappend_node('B')
+# lsst_1.deleteNode('C')
+# lsst_1.insert_at(lsst_1.head.next, 'C')
+# lsst_1.del_link_list()
 
-# if(lsst.detect_loop()):
+# if(lsst_1.detect_loop()):
 #     print("Loop detected")
 # else:
 #     print("Loop not detected")
