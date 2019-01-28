@@ -311,7 +311,18 @@ class s_link_list:
             cur_node = cur_node.next
         self.head = cur_node
 
+    def move_tail_to_head(self):
+        prev_node = None
+        last_node = self.head
 
+        while(last_node.next):
+            prev_node = last_node
+            last_node = last_node.next
+
+        prev_node=None
+        last_node.next=self.head
+        self.head=last_node
+        
 lsst_1 = s_link_list()
 lsst_1.append_node(1)
 lsst_1.append_node(3)
@@ -321,9 +332,15 @@ lsst_1.append_node(9)
 
 print('list 1 :##########\n')
 lsst_1.print_list()
-print('list nth_to_last :##########\n')
-lsst_1.nth_to_last(3)
+
+print('list move_tail_to_head :##########\n')
+lsst_1.move_tail_to_head()
 lsst_1.print_list()
+
+# print('list nth_to_last :##########\n')
+# lsst_1.nth_to_last(3)
+# lsst_1.print_list()
+
 
 # lsst_2 = s_link_list()
 # lsst_2.append_node(2)
