@@ -63,11 +63,11 @@ class s_link_list:
         while(slow_tmp and fast_tmp and fast_tmp.next):
             slow_tmp = slow_tmp.next
             fast_tmp = fast_tmp.next.next
+            print("detect_loop_2 => ", slow_tmp.data,
+                  fast_tmp.data, fast_tmp.next.data)
+
             if(slow_tmp == fast_tmp):
                 print('Loop detected')
-                return
-            else:
-                print('Loop not detected')
                 return
 
     def get_size(self):
@@ -319,10 +319,44 @@ class s_link_list:
             prev_node = last_node
             last_node = last_node.next
 
-        prev_node=None
-        last_node.next=self.head
-        self.head=last_node
-        
+        prev_node.next = None
+        last_node.next = self.head
+        self.head = last_node
+
+    def nth_from_last(self, n):
+        length = 0
+        tmp = self.head
+        while(tmp):
+            tmp = tmp.next
+            length += 1
+        tmp = self.head
+
+        for i in range(length - n):
+            tmp = tmp.next
+        print('temp.data = >', tmp.data)
+
+    def is_palindrom_new(self):
+
+        length = 0
+        tmp = self.head
+        prev = []
+        while(tmp):
+            prev.append(tmp)
+            length += 1
+            tmp.next
+        return length
+        # mid = 0
+        # tmp = self.head
+        # print('asdads')
+        # while(mid <= length//2):
+        #     if(prev[-length] != tmp.data):
+        #         return False
+        #     tmp = tmp.next
+        #     mid += 1
+        # print('asdad')
+        # return True
+
+
 lsst_1 = s_link_list()
 lsst_1.append_node(1)
 lsst_1.append_node(3)
@@ -330,12 +364,23 @@ lsst_1.append_node(5)
 lsst_1.append_node(7)
 lsst_1.append_node(9)
 
-print('list 1 :##########\n')
+print('\nlist 1 :##########\n')
 lsst_1.print_list()
+print('is_palindrom => ', lsst_1.is_palindrom_new())
 
-print('list move_tail_to_head :##########\n')
-lsst_1.move_tail_to_head()
-lsst_1.print_list()
+
+# lsst_1.head.next.next.next.next.next = lsst_1.head
+# lsst_1.detect_loop_2()
+# lsst_1.print_list()
+
+
+# print('list nth_from_last:##########\n')
+# lsst_1.nth_from_last(4)
+# lsst_1.print_list()
+
+# print('list move_tail_to_head :##########\n')
+# lsst_1.move_tail_to_head()
+# lsst_1.print_list()
 
 # print('list nth_to_last :##########\n')
 # lsst_1.nth_to_last(3)
