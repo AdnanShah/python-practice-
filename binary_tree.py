@@ -1,11 +1,11 @@
-class Node(object):
+class Node():
     def __init__(self, value):
         self.value = value
         self.left = None
         self.right = None
 
 
-class Binary_Tree(object):
+class Binary_Tree():
     def __init__(self, root):
         self.root = Node(root)
 
@@ -42,6 +42,6 @@ tree.root.left.right = Node(5)
 tree.root.right.left = Node(6)
 tree.root.right.right = Node(7)
 
-# print("\npre_order_traverse\n", tree.pre_order_traverse(tree.root, ''))
-# print("\nin_order_traverse\n", tree.in_order_traverse(tree.root, ""))
+print("\npre_order_traverse\n", tree.pre_order_traverse(tree.root, ''))
+print("\nin_order_traverse\n", tree.in_order_traverse(tree.root, ""))
 print("\npost_order_traverse\n", tree.post_order_traverse(tree.root, ""))
