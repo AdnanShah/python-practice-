@@ -25,7 +25,6 @@ class Binary_Tree():
 
     def post_order_traverse(self, new_node, out_string):
         if(new_node is None):
-            out_string += '-1'
             return out_string
         else:
             out_string = self.in_order_traverse(new_node.left, out_string)

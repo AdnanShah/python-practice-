@@ -356,17 +356,35 @@ class s_link_list:
         # print('asdad')
         # return True
 
+    def check_cirle(self):
+        tmp = self.head.next
+        root = self.head.data
+        print(tmp.data, root)
+
+        while(tmp.next is not None and tmp.data != root):
+            tmp = tmp.next
+
+        print(tmp.data, root, 'True')
+
+        if(tmp.data == root):
+            print(tmp.data, root, 'True')
+        else:
+            print('Flase')
+            print(tmp.data, root, 'True')
+
 
 lsst_1 = s_link_list()
 lsst_1.append_node(1)
 lsst_1.append_node(3)
 lsst_1.append_node(5)
-lsst_1.append_node(7)
-lsst_1.append_node(9)
+# lsst_1.append_node(7)
+# lsst_1.append_node(9)
 
 print('\nlist 1 :##########\n')
-lsst_1.print_list()
-print('is_palindrom => ', lsst_1.is_palindrom_new())
+lsst_1.head.next.next.next = lsst_1.head
+# lsst_1.print_list()
+lsst_1.check_cirle()
+# print('is_palindrom => ', lsst_1.is_palindrom_new())
 
 
 # lsst_1.head.next.next.next.next.next = lsst_1.head
