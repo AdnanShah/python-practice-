@@ -377,13 +377,13 @@ lsst_1 = s_link_list()
 lsst_1.append_node(1)
 lsst_1.append_node(3)
 lsst_1.append_node(5)
-# lsst_1.append_node(7)
+lsst_1.append_node(7)
 # lsst_1.append_node(9)
 
-print('\nlist 1 :##########\n')
-lsst_1.head.next.next.next = lsst_1.head
+# print('\nlist 1 :##########\n')
+# lsst_1.head.next.next.next = lsst_1.head
 # lsst_1.print_list()
-lsst_1.check_cirle()
+# lsst_1.check_cirle()
 # print('is_palindrom => ', lsst_1.is_palindrom_new())
 
 
